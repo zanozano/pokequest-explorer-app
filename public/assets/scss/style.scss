@@ -1,0 +1,282 @@
+//! This file is using BEM as a methodology to create hierarchy and organization of the styles
+@use "reset";
+@use "scroll-style";
+
+:root {
+    --background-primary: #313131;
+    --background-secondary: #fff;
+    --background-tertiary: #ee6b2f;
+    --background-quaternary: #4dad5b;
+    --font-primary: #919191;
+    --font-secondary: #fff;
+    --normal-color: #a8a77a;
+    --fighting-color: #c22e28;
+    --flying-color: #a98ff3;
+    --poison-color: #a33ea1;
+    --ground-color: #e2bf65;
+    --rock-color: #b6a136;
+    --bug-color: #a6b91a;
+    --ghost-color: #735797;
+    --steel-color: #b7b7ce;
+    --fire-color: #ee8130;
+    --water-color: #6390f0;
+    --grass-color: #7ac74c;
+    --electric-color: #f7d02c;
+    --psychic-color: #f95587;
+    --ice-color: #96d9d6;
+    --dragon-color: #6f35fc;
+    --dark-color: #705746;
+    --fairy-color: #d685ad;
+    --unknown-color: #68a090;
+    --shadow-color: #5f6169;
+}
+
+body {
+    font-family: "Flexo-Regular", arial, sans-serif;
+    color: var(--font-primary);
+}
+
+.header {
+    align-items: center;
+    background-color: var(--background-secondary);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    & h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+
+.search {
+    background-color: var(--background-primary);
+    color: var(--font-secondary);
+    padding: 2rem 1rem;
+    &__form {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+    }
+    &__label {
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+    &__container--left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    &__input {
+        display: flex;
+        gap: 0.8rem;
+    }
+    & .btn {
+        background-color: var(--background-tertiary);
+        border: 0;
+        & img {
+            width: 1.8rem;
+        }
+    }
+    &__container--right {
+        align-items: center;
+        background-color: var(--background-quaternary);
+        border-radius: 0.3rem;
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .search {
+        background-color: var(--background-primary);
+        color: var(--font-secondary);
+        padding: 2rem 1rem;
+        &__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+        &__label {
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+        &__container--left {
+            display: flex;
+            gap: 0.8rem;
+            width: 100%;
+        }
+        & .btn {
+            background-color: var(--background-tertiary);
+            border: 0;
+            & img {
+                width: 1.8rem;
+            }
+        }
+    }
+}
+
+.section {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    height: 60vh;
+    padding: 4rem;
+    &__card {
+        background-color: #f2f2f2;
+        border-radius: 0.8rem;
+        display: flex;
+        margin-bottom: 1rem;
+        width: fit-content;
+    }
+    & img {
+        height: 200px;
+        width: 200px;
+    }
+    & h5 {
+        color: var(--background-primary);
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+    & h4 {
+        font-size: 0.9em;
+        font-weight: 700;
+    }
+    &__type {
+        display: flex;
+        gap: 0.5rem;
+    }
+    &__chip {
+        border-radius: 0.5rem;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .section {
+        flex-direction: column;
+    }
+}
+
+.footer {
+    align-items: center;
+    background-color: var(--background-primary);
+    color: var(--background-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    &__h5 {
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    &__p {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+}
+
+.normal {
+    background-color: var(--normal-color);
+    color: var(--background-secondary);
+}
+
+.fighting {
+    background-color: var(--fighting-color);
+    color: var(--background-secondary);
+}
+
+.flying {
+    background-color: var(--flying-color);
+    color: var(--background-secondary);
+}
+
+.poison {
+    background-color: var(--poison-color);
+    color: var(--background-secondary);
+}
+
+.ground {
+    background-color: var(--ground-color);
+    color: var(--background-secondary);
+}
+
+.rock {
+    background-color: var(--rock-color);
+    color: var(--background-secondary);
+}
+
+.bug {
+    background-color: var(--bug-color);
+    color: var(--background-secondary);
+}
+
+.ghost {
+    background-color: var(--ghost-color);
+    color: var(--background-secondary);
+}
+
+.steel {
+    background-color: var(--steel-color);
+    color: var(--background-primary);
+}
+
+.fire {
+    background-color: var(--fire-color);
+    color: var(--background-secondary);
+}
+
+.water {
+    background-color: var(--water-color);
+    color: var(--background-secondary);
+}
+
+.grass {
+    background-color: var(--grass-color);
+    color: var(--background-secondary);
+}
+
+.electric {
+    background-color: var(--electric-color);
+    color: var(--background-secondary);
+}
+
+.psychic {
+    background-color: var(--psychic-color);
+    color: var(--background-secondary);
+}
+
+.ice {
+    background-color: var(--ice-color);
+    color: var(--background-primary);
+}
+
+.dragon {
+    background-color: var(--dragon-color);
+    color: var(--background-secondary);
+}
+
+.dark {
+    background-color: var(--dark-color);
+    color: var(--background-secondary);
+}
+
+.fairy {
+    background-color: var(--fairy-color);
+    color: var(--background-secondary);
+}
+
+.unknown {
+    background-color: var(--unknown-color);
+    color: var(--background-secondary);
+}
+
+.shadow {
+    background-color: var(--shadow-color);
+    color: var(--background-secondary);
+}

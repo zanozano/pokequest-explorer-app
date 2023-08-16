@@ -1,0 +1,29 @@
+{
+  "name": "pokeapi-app",
+  "version": "2.0.0",
+  "description": "The project uses the API of Pokemon to render img in the app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass --watch public/assets/scss/style.scss:public/assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zanozano/pokeApi.git"
+  },
+  "keywords": [
+    "pokemon",
+    "api",
+    "javascript"
+  ],
+  "author": "Cristobal Manzano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zanozano/pokeApi/issues"
+  },
+  "homepage": "https://github.com/zanozano/pokeApi#readme",
+  "dependencies": {
+    "node-sass": "^9.0.0",
+    "sweetalert2": "^11.7.23"
+  }
+}
