@@ -6,9 +6,10 @@ $(document).ready(function () {
 			$.ajax({
 				url: 'https://pokeapi.co/api/v2/pokemon/' + valueInput,
 				success: function (data) {
+					$('#pokemonInput').val('');
 					let number = data.id;
 					let name = data.name;
-					let image = data.sprites.front_default;
+					let image = data.sprites.other.dream_world.front_default;
 					let types = data.types;
 
 					function capitalizeFirstLetter(string) {
@@ -22,9 +23,6 @@ $(document).ready(function () {
 						};
 					});
 
-					console.log(typeInfoArray);
-
-
 					$('#pokeInfo').html(`
                     <div class="section__card">
 					<img src="${image}" />
@@ -35,9 +33,9 @@ $(document).ready(function () {
 					${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
 					</div>
                 `);
+
 					//
 					let estadisticas = [];
-					console.log(data);
 					data.stats.forEach(function (s) {
 						estadisticas.push({
 							label: s.stat.name,
@@ -45,27 +43,48 @@ $(document).ready(function () {
 						});
 					});
 
-					let config = {
-						animationEnabled: true,
-						title: {
-							text: 'Estadisticas',
+					let ctx = document.getElementById('pokeStats').getContext('2d');
+					let chart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+							labels: estadisticas.map(stat => stat.label),
+							datasets: [{
+								label: 'Estadisticas',
+								data: estadisticas.map(stat => stat.y),
+								backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color of bars
+								borderColor: 'rgba(75, 192, 192, 1)', // Border color of bars
+								borderWidth: 1,
+							}]
 						},
-						axisY: {
-							title: 'Valor',
-						},
-						axisX: {
-							title: '',
-						},
-						data: [
-							{
-								type: 'column',
-								dataPoints: estadisticas,
+						options: {
+							plugins: {
+								title: {
+									display: true,
+									text: 'Estadisticas'
+								},
+								legend: {
+									display: false
+								},
 							},
-						],
-					};
+							scales: {
+								y: {
+									beginAtZero: true,
+									title: {
+										display: true,
+										text: 'Valor'
+									}
+								},
+								x: {
+									title: {
+										display: false,
+										text: ''
+									}
+								}
+							}
+						}
+					});
 
-					let chart = new CanvasJS.Chart('pokeStats', config);
-					chart.render();
+					//
 				},
 				error: function () {
 					Swal.fire({

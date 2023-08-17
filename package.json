@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/zanozano/pokeApi#readme",
   "dependencies": {
+    "chart.js": "^4.3.3",
     "node-sass": "^9.0.0",
     "sweetalert2": "^11.7.23"
   }

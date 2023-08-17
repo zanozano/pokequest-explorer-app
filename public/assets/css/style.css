@@ -234,6 +234,7 @@ body {
 .search {
   background-color: var(--background-primary);
   color: var(--font-secondary);
+  margin-bottom: 2rem;
   padding: 2rem 1rem;
 }
 .search__form {
@@ -302,22 +303,38 @@ body {
 .section {
   align-items: center;
   display: flex;
-  flex-direction: row;
   gap: 2rem;
+  height: fit-content;
   justify-content: center;
-  height: 60vh;
-  padding: 4rem;
+  padding: 0 2rem;
 }
 .section__card {
   background-color: #f2f2f2;
   border-radius: 0.8rem;
   display: flex;
   margin-bottom: 1rem;
-  width: fit-content;
+  padding: 2rem;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
 }
 .section img {
-  height: 200px;
-  width: 200px;
+  height: 180px;
+  width: 180px;
+}
+@keyframes pokeball {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+}
+.section .img--loader {
+  animation: pokeball 3s infinite;
+  filter: grayscale(0.9);
+  height: 180px;
+  width: 180px;
 }
 .section h5 {
   color: var(--background-primary);
@@ -350,6 +367,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 2rem;
   padding: 2rem;
 }
 .footer__h5 {
