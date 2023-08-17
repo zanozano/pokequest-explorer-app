@@ -45,10 +45,8 @@ $(document).ready(function () {
 					<div id="chart" class="d-none section__card">
 						<canvas class="section__canvas" id="pokeStats"></canvas>
 					</div>
-					`)
-						;
-
-
+					`);
+					$('#pokeInfo').focus();
 				},
 				error: function () {
 					Swal.fire({
@@ -129,5 +127,5 @@ function showChart(statsArray) {
 }
 
 document.getElementById('toggleChartBtn').addEventListener('click', function () {
-	showChart(statsArray, this);
+	showChart(statsArray);
 });
