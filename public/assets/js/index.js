@@ -23,68 +23,32 @@ $(document).ready(function () {
 						};
 					});
 
+					statsArray = data.stats.map(function (s) {
+						return {
+							label: s.stat.name,
+							stat: s.base_stat,
+						};
+					});
+
 					$('#pokeInfo').html(`
                     <div class="section__card">
-					<img src="${image}" />
+						<img src="${image}" />
                     </div> 
-					<h4>#${number}</h4>          
-					<h5>${capitalizeFirstLetter(name)}</h5>
+						<h4>#${number}</h4>          
+						<h5>${capitalizeFirstLetter(name)}</h5>
 					<div class="section__type">
-					${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
+						${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
 					</div>
-                `);
 
-					//
-					let estadisticas = [];
-					data.stats.forEach(function (s) {
-						estadisticas.push({
-							label: s.stat.name,
-							y: s.base_stat,
-						});
-					});
+					<button class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
+                	
+					<div id="chart" class="d-none section__card">
+						<canvas class="section__canvas" id="pokeStats"></canvas>
+					</div>
+					`)
+						;
 
-					let ctx = document.getElementById('pokeStats').getContext('2d');
-					let chart = new Chart(ctx, {
-						type: 'bar',
-						data: {
-							labels: estadisticas.map(stat => stat.label),
-							datasets: [{
-								label: 'Estadisticas',
-								data: estadisticas.map(stat => stat.y),
-								backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color of bars
-								borderColor: 'rgba(75, 192, 192, 1)', // Border color of bars
-								borderWidth: 1,
-							}]
-						},
-						options: {
-							plugins: {
-								title: {
-									display: true,
-									text: 'Estadisticas'
-								},
-								legend: {
-									display: false
-								},
-							},
-							scales: {
-								y: {
-									beginAtZero: true,
-									title: {
-										display: true,
-										text: 'Valor'
-									}
-								},
-								x: {
-									title: {
-										display: false,
-										text: ''
-									}
-								}
-							}
-						}
-					});
 
-					//
 				},
 				error: function () {
 					Swal.fire({
@@ -103,3 +67,63 @@ $(document).ready(function () {
 		}
 	});
 });
+
+function showChart(statsArray) {
+
+	let chart = document.getElementById('chart');
+	chart.classList.remove('d-none');
+
+	let canvas = document.getElementById('pokeStats').getContext('2d');
+
+	const orderedData = ['hp', 'attack', 'defense', 'special-defense', 'special-attack', 'speed']
+		.map(label => statsArray.find(stat => stat.label === label).stat);
+
+
+	const config = {
+		type: 'radar',
+		data: {
+			datasets: [{
+				data: orderedData,
+				fill: true,
+				backgroundColor: 'rgba(255, 99, 132, 0.2)',
+				borderColor: 'rgb(255, 99, 132)',
+				pointBackgroundColor: 'rgb(255, 99, 132)',
+				pointBorderColor: '#fff',
+				pointHoverBackgroundColor: '#fff',
+				pointHoverBorderColor: 'rgb(255, 99, 132)'
+			}],
+			labels: ['HP', 'Attack', 'Defense', 'Sp.Def', 'Sp.Atk', 'Speed']
+		},
+		options: {
+			maintainAspectRatio: false,
+			responsive: true,
+			scales: {
+				r: {
+					beginAtZero: true,
+					pointLabels: {
+						font: {
+							weight: 'bold',
+							color: '#313131',
+							size: 14,
+						},
+						callback: function (value, index, values) {
+							return [value, statsArray[index].stat]; // Retorna un arreglo para separar etiqueta y valor
+						},
+					},
+					ticks: {
+						display: false,
+					},
+					grid: {
+						display: true,
+					},
+				},
+			},
+			plugins: {
+				legend: {
+					display: false,
+				},
+			},
+		},
+	};
+	let myChart = new Chart(canvas, config);
+}

@@ -234,7 +234,7 @@ body {
 .search {
   background-color: var(--background-primary);
   color: var(--font-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   padding: 2rem 1rem;
 }
 .search__form {
@@ -306,21 +306,50 @@ body {
   gap: 2rem;
   height: fit-content;
   justify-content: center;
+  min-height: calc(100vh - 250px - 150px - 70px);
   padding: 0 2rem;
 }
-.section__card {
-  background-color: #f2f2f2;
-  border-radius: 0.8rem;
+.section__block {
+  align-items: center;
   display: flex;
-  margin-bottom: 1rem;
-  padding: 2rem;
-  border-radius: 50px;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+.section__card {
+  align-items: center;
   background: #e0e0e0;
+  border-radius: 1rem;
+  display: flex;
+  height: 280px;
+  justify-content: center;
+  width: 280px;
   box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
 }
 .section img {
   height: 180px;
-  width: 180px;
+  width: fit-content;
+}
+.section__btn {
+  z-index: 100;
+  background-color: var(--background-primary);
+  border-radius: 0.5rem;
+  color: var(--background-secondary);
+  font-weight: 600;
+  padding: 0.8rem;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+.section__btn:hover {
+  background-color: var(--background-tertiary);
+}
+.section__btn:active {
+  background-color: var(--bug-color);
+}
+.section__canvas {
+  padding: 0.8rem;
+  height: 180px;
+  width: fit-content;
 }
 @keyframes pokeball {
   0%, 100% {
@@ -340,10 +369,12 @@ body {
   color: var(--background-primary);
   font-size: 1.2em;
   font-weight: 700;
+  margin: 0;
 }
 .section h4 {
   font-size: 0.9em;
   font-weight: 700;
+  margin: 0;
 }
 .section__type {
   display: flex;
@@ -355,11 +386,6 @@ body {
   padding: 0.5rem 1rem;
 }
 
-@media screen and (max-width: 600px) {
-  .section {
-    flex-direction: column;
-  }
-}
 .footer {
   align-items: center;
   background-color: var(--background-primary);
@@ -367,7 +393,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   padding: 2rem;
 }
 .footer__h5 {
