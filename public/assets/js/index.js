@@ -40,7 +40,7 @@ $(document).ready(function () {
 						${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
 					</div>
 
-					<button class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
+					<button id="toggleChartBtn" class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
                 	
 					<div id="chart" class="d-none section__card">
 						<canvas class="section__canvas" id="pokeStats"></canvas>
@@ -71,7 +71,7 @@ $(document).ready(function () {
 function showChart(statsArray) {
 
 	let chart = document.getElementById('chart');
-	chart.classList.remove('d-none');
+	chart.classList.toggle('d-none');
 
 	let canvas = document.getElementById('pokeStats').getContext('2d');
 
@@ -127,3 +127,7 @@ function showChart(statsArray) {
 	};
 	let myChart = new Chart(canvas, config);
 }
+
+document.getElementById('toggleChartBtn').addEventListener('click', function () {
+	showChart(statsArray, this);
+});
