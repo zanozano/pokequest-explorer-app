@@ -1,7 +1,9 @@
 $(document).ready(function () {
+
 	$('form').submit(function (event) {
 		event.preventDefault();
 		let valueInput = $('#pokemonInput').val();
+
 		if (valueInput != '') {
 			$.ajax({
 				url: 'https://pokeapi.co/api/v2/pokemon/' + valueInput,
@@ -9,7 +11,7 @@ $(document).ready(function () {
 					$('#pokemonInput').val('');
 					let number = data.id;
 					let name = data.name;
-					let image = data.sprites.other.dream_world.front_default;
+					let image = data.sprites.other["official-artwork"].front_default;
 					let types = data.types;
 
 					function capitalizeFirstLetter(string) {
@@ -31,16 +33,19 @@ $(document).ready(function () {
 					});
 
 					$('#pokeInfo').html(`
-                    <div class="section__card">
-						<img src="${image}" />
-                    </div> 
-						<h4>#${number}</h4>          
-						<h5>${capitalizeFirstLetter(name)}</h5>
-					<div class="section__type">
-						${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
+					<div class="section__pokemon--information">
+                    	<div class="section__card">
+							<img src="${image}" alt="${name}" />
+                    	</div> 
+						<div>
+							<h4>#${number}</h4>          
+							<h5>${capitalizeFirstLetter(name)}</h5>
+						</div>
+						<div class="section__type">
+							${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
+						</div>
+						<button id="toggleChartBtn" class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
 					</div>
-
-					<button id="toggleChartBtn" class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
                 	
 					<div id="chart" class="d-none section__card">
 						<canvas class="section__canvas" id="pokeStats"></canvas>
@@ -66,12 +71,32 @@ $(document).ready(function () {
 	});
 });
 
+//toggle
+function attachToggleChartListener() {
+	let toggleChartBtn = document.getElementById('toggleChartBtn');
+	if (toggleChartBtn) {
+		toggleChartBtn.addEventListener('click', function () {
+			showChart(statsArray);
+		});
+	}
+}
+document.addEventListener('DOMContentLoaded', function () {
+	attachToggleChartListener();
+});
+
+
+//chart
+let myChart = null;
 function showChart(statsArray) {
 
 	let chart = document.getElementById('chart');
 	chart.classList.toggle('d-none');
 
 	let canvas = document.getElementById('pokeStats').getContext('2d');
+
+	if (myChart) {
+		myChart.destroy();
+	}
 
 	const orderedData = ['hp', 'attack', 'defense', 'special-defense', 'special-attack', 'speed']
 		.map(label => statsArray.find(stat => stat.label === label).stat);
@@ -123,9 +148,41 @@ function showChart(statsArray) {
 			},
 		},
 	};
-	let myChart = new Chart(canvas, config);
+	myChart = new Chart(canvas, config);
 }
 
-document.getElementById('toggleChartBtn').addEventListener('click', function () {
-	showChart(statsArray);
+//autocomplete
+document.addEventListener('DOMContentLoaded', function () {
+	let input = document.getElementById('pokemonInput');
+	let awesomplete = new Awesomplete(input, {
+		minChars: 2,
+		maxItems: 10,
+		list: [],
+	});
+
+	let searchTimeout;
+
+	input.addEventListener('input', function () {
+		let inputValue = input.value.trim();
+		clearTimeout(searchTimeout);
+
+		searchTimeout = setTimeout(function () {
+			if (inputValue.length >= awesomplete.minChars) {
+				fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1000`)
+					.then((response) => response.json())
+					.then((data) => {
+						var pokemonNames = data.results
+							.map((pokemon) => pokemon.name)
+							.filter((name) => name.includes(inputValue.toLowerCase()));
+						awesomplete.list = pokemonNames;
+					})
+					.catch((error) => {
+						console.error('Error fetching Pokémon data:', error);
+					});
+			} else {
+				awesomplete.list = [];
+			}
+		}, 300);
+	});
 });
+

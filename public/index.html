@@ -17,6 +17,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="./assets/css/awesomplete.css">
 	<title>Pokedex</title>
 </head>
 
@@ -31,7 +32,7 @@
 			<div class="search__container--left">
 				<label class="search__label">Name or Number</label>
 				<div class="search__input">
-					<input id="pokemonInput" type="text" class="form-control" />
+					<input id="pokemonInput" type="text" class="form-control awesomplete" />
 					<button class="btn btn-primary">
 						<img src="./assets/img/search.svg" alt="search">
 					</button>
@@ -41,23 +42,30 @@
 				Search for a Pokémon by name or using its National Pokédex number.
 			</div>
 		</form>
-	</section>
 
+	</section>
+	<!--  -->
 	<section class="section">
+
 		<div class="section__block" tabindex="0" id="pokeInfo">
 			<div class="section__card">
 				<img class="img--loader" src="./assets/img/pokeball-loader.png" alt="pokemon">
 			</div>
-	</section>
+		</div>
 
+	</section>
+	<!--  -->
 	<footer class="footer">
 		<h5 class="footer__h5">
-			PokeAPI
+			<a href="https://github.com/zanozano/pokeApi">
+				PokeAPI
+			</a>
 		</h5>
 		<p class="footer__p">Design by Cristobal Manzano</p>
 	</footer>
 
 	<script src="./assets/js/index.js"></script>
+	<script src="./assets/js/awesomplete.js" defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
