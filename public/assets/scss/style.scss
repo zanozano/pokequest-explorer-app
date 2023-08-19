@@ -178,7 +178,7 @@ body {
         height: 200px;
         left: 50%;
         position: absolute;
-        top: 50%;
+        top: 40%;
         transform: translate(-50%, -50%);
         transition: all 1 ease-in-out;
         width: fit-content;
@@ -205,13 +205,13 @@ body {
         justify-content: center;
         transition: all 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
         width: 64px;
+        padding: 0.2rem;
     }
     &__container--icon[data-hover]:hover {
         transform: scale(1.1);
     }
     &__icon {
         height: auto;
-        width: 54px;
     }
     &__btn {
         z-index: 100;
