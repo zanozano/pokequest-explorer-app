@@ -1,75 +1,178 @@
-$(document).ready(function () {
+//evolution
+function getAllEvolutions(evol, selectedPokemon) {
 
-	$('form').submit(function (event) {
-		event.preventDefault();
-		let valueInput = $('#pokemonInput').val();
+	const evolutions = [];
 
-		if (valueInput != '') {
-			$.ajax({
-				url: 'https://pokeapi.co/api/v2/pokemon/' + valueInput,
-				success: function (data) {
-					$('#pokemonInput').val('');
-					let number = data.id;
-					let name = data.name;
-					let image = data.sprites.other["official-artwork"].front_default;
-					let types = data.types;
-
-					function capitalizeFirstLetter(string) {
-						return string.charAt(0).toUpperCase() + string.slice(1);
-					}
-
-					let typeInfoArray = types.map(function (type) {
-						return {
-							name: type.type.name,
-							url: type.type.url
-						};
-					});
-
-					statsArray = data.stats.map(function (s) {
-						return {
-							label: s.stat.name,
-							stat: s.base_stat,
-						};
-					});
-
-					$('#pokeInfo').html(`
-					<div class="section__pokemon--information">
-                    	<div class="section__card">
-							<img src="${image}" alt="${name}" />
-                    	</div> 
-						<div>
-							<h4>#${number}</h4>          
-							<h5>${capitalizeFirstLetter(name)}</h5>
-						</div>
-						<div class="section__type">
-							${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
-						</div>
-						<button id="toggleChartBtn" class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
-					</div>
-                	
-					<div id="chart" class="d-none section__card">
-						<canvas class="section__canvas" id="pokeStats"></canvas>
-					</div>
-					`);
-					$('#pokeInfo').focus();
-				},
-				error: function () {
-					Swal.fire({
-						icon: 'error',
-						title: 'Pokemon Not Found',
-						text: 'The entered value does not correspond to a valid Pokemon.',
-					});
-				}
-			});
-		} else {
-			Swal.fire({
-				icon: 'warning',
-				title: 'Enter a value',
-				text: 'Please enter a name or number.',
-			})
+	function recursiveEvolutions(currentChain) {
+		const species = currentChain.species.name;
+		if (selectedPokemon !== species) {
+			evolutions.push(species);
 		}
+		currentChain.evolves_to.forEach(nextEvolution => {
+			recursiveEvolutions(nextEvolution);
+		});
+	}
+
+	recursiveEvolutions(evol);
+
+	return displayEvolutions(evolutions);
+}
+
+
+//render pokemon
+function getEvolutions(species, selectedPokemon) {
+	fetch(species.url)
+		.then(response => response.json())
+		.then(data => {
+			fetch(data.evolution_chain.url)
+				.then(response => response.json())
+				.then(evol => {
+					getAllEvolutions(evol.chain, selectedPokemon);
+				})
+				.catch(error => {
+					console.error('Error fetching evolution chain data:', error);
+				});
+		})
+		.catch(error => {
+			console.error('Error fetching species data:', error);
+		});
+}
+
+//show pokemon
+function displayEvolutions(evolutions) {
+	const pokeIconContainer = document.getElementById('pokeIcon');
+	let iconsHTML = '';
+
+	function renderNextImage(index) {
+		if (index >= evolutions.length) {
+			return; // Se han renderizado todas las imágenes
+		}
+
+		const pokemonName = evolutions[index];
+
+		fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+			.then(response => response.json())
+			.then(data => {
+				const pokemonImage = data.sprites.front_default;
+
+				iconsHTML += `
+					<div class="section__container--icon" data-hover="${data.id}">
+						<img class="section__icon" src="${pokemonImage}" alt="${data.name}" onclick="fetchPokemonInfo(${data.id})" />	
+					</div>
+				`;
+
+				pokeIconContainer.innerHTML = iconsHTML;
+
+				setTimeout(() => {
+					renderNextImage(index + 1);
+				}, 100);
+			})
+			.catch(error => {
+				console.error(`Error fetching Pokémon data for ${pokemonName}:`, error);
+			});
+	}
+	renderNextImage(0);
+}
+
+function submitPokemon(id) {
+	let form = document.getElementById('form');
+	let input = form.getElementById('#pokemonInput').value(id);
+	form.submit(input);
+}
+
+// render main pokemon card
+function fetchPokemonInfo(valueInput) {
+	if (valueInput != '') {
+		$.ajax({
+			url: 'https://pokeapi.co/api/v2/pokemon/' + valueInput,
+			success: function (data) {
+				$('#pokemonInput').val('');
+				let number = data.id;
+				let name = data.name;
+				let image = data.sprites.other["official-artwork"].front_default;
+				let types = data.types;
+				let species = {
+					name: data.species.name,
+					url: data.species.url
+				};
+
+				function capitalizeFirstLetter(string) {
+					return string.charAt(0).toUpperCase() + string.slice(1);
+				}
+
+				let typeInfoArray = types.map(function (type) {
+					return {
+						name: type.type.name,
+						url: type.type.url
+					};
+				});
+
+				statsArray = data.stats.map(function (s) {
+					return {
+						label: s.stat.name,
+						stat: s.base_stat,
+					};
+				});
+
+				$('#pokeInfo').html(`
+				<div class="section__pokemon--information">
+                	<div class="section__card">
+							<img class="section__main--image" src="${image}" alt="${name}" />
+							<div class="section__display--icon" id="pokeIcon"></div>
+                	</div>
+
+					<div>
+						<h4>#${number}</h4>          
+						<h5>${capitalizeFirstLetter(name)}</h5>
+					</div>
+					<div class="section__type">
+						${typeInfoArray.map(typeInfo => `<div class="section__chip ${typeInfo.name}">${typeInfo.name}</div>`).join('')}
+					</div>
+					<button id="toggleChartBtn" class="section__btn" onClick="showChart(statsArray)">Show Stats</button>
+				
+					<div id="evolutionContainer" class="section__evolutions">
+    
+    				</div>
+					</div>
+            	
+				<div id="chart" class="d-none section__card">
+					<canvas class="section__canvas" id="pokeStats"></canvas>
+				</div>
+				`);
+				$('#pokeInfo').focus();
+				//evolution
+				getEvolutions(species, name);
+			},
+			error: function () {
+				Swal.fire({
+					icon: 'error',
+					title: 'Pokemon Not Found',
+					text: 'The entered value does not correspond to a valid Pokemon.',
+				});
+			}
+		});
+	} else {
+		Swal.fire({
+			icon: 'warning',
+			title: 'Enter a value',
+			text: 'Please enter a name or number.',
+		});
+	}
+}
+
+$(document).ready(function () {
+	document.getElementById('form').addEventListener('submit', function (event) {
+		event.preventDefault();
+		let valueInput = document.getElementById('pokemonInput').value;
+		fetchPokemonInfo(valueInput);
+	});
+	//change main image
+	$('#pokeIcon').on('click', '.section__icon', function () {
+		const clickedImageSrc = $(this).attr('src');
+		$('.section__main--image').attr('src', clickedImageSrc);
 	});
 });
+
 
 //toggle
 function attachToggleChartListener() {

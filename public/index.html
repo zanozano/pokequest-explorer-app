@@ -28,12 +28,12 @@
 	</header>
 
 	<section class="search">
-		<form class="search__form">
+		<form id="form" class="search__form">
 			<div class="search__container--left">
 				<label class="search__label">Name or Number</label>
 				<div class="search__input">
 					<input id="pokemonInput" type="text" class="form-control awesomplete" />
-					<button class="btn btn-primary">
+					<button class="btn btn-primary" type="submit">
 						<img src="./assets/img/search.svg" alt="search">
 					</button>
 				</div>
@@ -49,7 +49,7 @@
 
 		<div class="section__block" tabindex="0" id="pokeInfo">
 			<div class="section__card">
-				<img class="img--loader" src="./assets/img/pokeball-loader.png" alt="pokemon">
+				<img class="section__img--loader" src="./assets/img/pokeball-loader.png" alt="pokemon">
 			</div>
 		</div>
 
