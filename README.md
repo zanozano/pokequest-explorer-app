@@ -1,10 +1,10 @@
-# Search Pokemon
+# Search Pokemon App
 
-## _Explore Pokémon Information with PokeAPI_
+## _Explore Pokémon World with PokeAPI_
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-Welcome to PokeDex, a powerful web application that allows users to delve into the vast world of Pokémon by providing in-depth information sourced from the PokeAPI. Discover detailed data about your favorite Pokémon, including their images, types, and stats, all within an engaging and user-friendly interface. PokeDex takes your experience to the next level with SCSS and the BEM methodology for streamlined styling, customized scrolling for a smoother user experience, and seamless SweetAlert integration for enhanced usability. Stay tuned for upcoming features, such as Pokémon sound integration, to make your journey even more immersive.
+Welcome to Searcg Pokemon App, a powerful web application that allows users to delve into the vast world of Pokémon by providing in-depth information sourced from the PokeAPI. Discover detailed data about your favorite Pokémon, including their images, types, and stats, all within an engaging and user-friendly interface. PokeDex takes your experience to the next level with SCSS and the BEM methodology for streamlined styling, customized scrolling for a smoother user experience, and seamless SweetAlert integration for enhanced usability. Stay tuned for upcoming features, such as Pokémon sound integration, to make your journey even more immersive.
 
 ## Features
 
@@ -67,10 +67,10 @@ For real-time updates of SCSS to CSS, use the following script after installing 
 
 ## Current Deployment Example
 
-Experience PokeDex in action by visiting the following Firebase-hosted link:
+Experience Search Pokemon App in action by visiting the following Firebase-hosted link:
 
-[**PokeDex Live Demo**](https://pokeapi-9df8e.web.app/)
+[**Search Pokemon App Live Demo**](https://pokeapi-9df8e.web.app/)
 
 ## Contributing
 
-PokeDex warmly welcomes contributions! Whether you want to enhance existing features or introduce new ones, please feel free to fork the repository and submit pull requests.
+Search Pokemon App warmly welcomes contributions! Whether you want to enhance existing features or introduce new ones, please feel free to fork the repository and submit pull requests.
