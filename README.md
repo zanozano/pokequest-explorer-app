@@ -1,4 +1,5 @@
 # Search Pokemon
+
 ## _Explore Pokémon Information with PokeAPI_
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
@@ -42,19 +43,20 @@ git clone https://github.com/zanozano/search-pokemon.git
 cd search-pokemon
 ```
 
-2. Install the necessary project dependencies.
+1. Install the necessary project dependencies.
 
 ```bash
 npm install
 ```
 
-3. Launch the application by opening the `index.html` file in your preferred web browser.
+1. Launch the application by opening the `index.html` file in your preferred web browser.
 
-4. In the input field, provide the name or ID of the Pokémon you want to learn more about, then click the "Search" button.
+2. In the input field, provide the name or ID of the Pokémon you want to learn more about, then click the "Search" button.
 
-5. Explore the Pokémon's image, types, and stats, presented alongside an interactive chart.
+3. Explore the Pokémon's image, types, and stats, presented alongside an interactive chart.
 
 ## Scripts
+
 For real-time updates of SCSS to CSS, use the following script after installing the dependencies:
 
 ```bash
