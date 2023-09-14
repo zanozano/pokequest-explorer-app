@@ -12,3 +12,12 @@ node_modules
 
 # Ignora archivos de configuración SASS
 .sass-cache
+
+
+.firebase
+
+.firebaserc
+
+.gitignore
+
+.firebase.json

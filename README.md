@@ -39,8 +39,8 @@ PokeDex relies on a range of technologies and libraries to provide its functiona
 1. Begin your journey by cloning the repository to your local machine.
 
 ```bash
-git clone https://github.com/zanozano/search-pokemon.git
-cd search-pokemon
+git clone https://github.com/zanozano/search-pokemon-app.git
+cd search-pokemon-app
 ```
 
 1. Install the necessary project dependencies.
