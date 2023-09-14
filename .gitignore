@@ -16,4 +16,4 @@ node_modules
 # Ignore Firebase specific files
 .firebase
 .firebaserc
-.firebase.json
+firebase.json
