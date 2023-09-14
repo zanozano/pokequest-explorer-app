@@ -1,23 +1,19 @@
-# Ignora archivos del sistema Mac 
-.DS_store
+# Ignore macOS system files
+.DS_Store
 
-# Ignora la carpeta node_modules
+# Ignore the node_modules directory
 node_modules
 
-# Ignora todos los archivos de texto
+# Ignore all text files
 *.txt
 
-# Ignora los archivos relacionados a API keys
+# Ignore files related to API keys
 .env
 
-# Ignora archivos de configuración SASS
+# Ignore SASS configuration files
 .sass-cache
 
-
+# Ignore Firebase specific files
 .firebase
-
 .firebaserc
-
-.gitignore
-
 .firebase.json
