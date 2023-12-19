@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-Welcome to Searcg Pokemon App, a powerful web application that allows users to delve into the vast world of Pokémon by providing in-depth information sourced from the PokeAPI. Discover detailed data about your favorite Pokémon, including their images, types, and stats, all within an engaging and user-friendly interface. PokeDex takes your experience to the next level with SCSS and the BEM methodology for streamlined styling, customized scrolling for a smoother user experience, and seamless SweetAlert integration for enhanced usability. Stay tuned for upcoming features, such as Pokémon sound integration, to make your journey even more immersive.
+Welcome to Search Pokemon App, a powerful web application that allows users to delve into the vast world of Pokémon by providing in-depth information sourced from the PokeAPI. Discover detailed data about your favorite Pokémon, including their images, types, and stats, all within an engaging and user-friendly interface. PokeDex takes your experience to the next level with SCSS and the BEM methodology for streamlined styling, customized scrolling for a smoother user experience, and seamless SweetAlert integration for enhanced usability. Stay tuned for upcoming features, such as Pokémon sound integration, to make your journey even more immersive.
 
 ## Features
 
