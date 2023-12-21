@@ -43,6 +43,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 1rem 0;
+
     & h1 {
         font-size: 2rem;
         font-weight: 600;
@@ -55,35 +56,43 @@ body {
     color: var(--font-secondary);
     margin-bottom: 3rem;
     padding: 2rem 1rem;
+
     &__form {
         display: flex;
         gap: 2rem;
         justify-content: center;
     }
+
     &__label {
         font-size: 1.4rem;
         font-weight: 400;
     }
+
     &__container--left {
         display: flex;
         flex-direction: column;
         gap: 0.8rem;
     }
+
     &__input {
         display: flex;
         align-items: center;
         gap: 0.8rem;
     }
+
     & .awesomplete {
         width: 100%;
     }
+
     & .btn {
         background-color: var(--background-tertiary);
         border: 0;
+
         & img {
             width: 1.8rem;
         }
     }
+
     &__container--right {
         align-items: center;
         background-color: var(--background-quaternary);
@@ -92,6 +101,10 @@ body {
         justify-content: center;
         padding: 1rem;
     }
+
+    &__h2 {
+        margin: 0;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -99,12 +112,14 @@ body {
         background-color: var(--background-primary);
         color: var(--font-secondary);
         padding: 2rem 1rem;
+
         &__form {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             width: 100%;
         }
+
         &__label {
             font-size: 1.4rem;
             font-weight: 400;
@@ -115,9 +130,11 @@ body {
             gap: 0.8rem;
             width: 100%;
         }
+
         & .btn {
             background-color: var(--background-tertiary);
             border: 0;
+
             & img {
                 width: 1.8rem;
             }
@@ -132,11 +149,13 @@ body {
     justify-content: center;
     min-height: calc(100vh - 250px - 150px - 70px);
     padding: 0 2rem;
+
     &__pokemon--information {
         display: flex;
         flex-direction: column;
         gap: 1rem;
     }
+
     &__block {
         align-items: flex-start;
         display: flex;
@@ -144,6 +163,7 @@ body {
         gap: 2.5rem;
         justify-content: center;
     }
+
     &__card {
         align-items: center;
         background: #e0e0e0;
@@ -157,15 +177,19 @@ body {
             10px 10px 30px #bebebe,
             -10px -10px 30px #ffffff;
     }
+
     @keyframes pokeball {
+
         0%,
         100% {
             transform: scale(1);
         }
+
         50% {
             transform: scale(0.8);
         }
     }
+
     &__img--loader {
         height: 200px;
         position: absolute;
@@ -173,6 +197,7 @@ body {
         animation: pokeball 3s infinite;
         filter: grayscale(0.9);
     }
+
     &__main--image {
         cursor: pointer;
         height: 200px;
@@ -182,10 +207,12 @@ body {
         transform: translate(-50%, -50%);
         transition: all 1 ease-in-out;
         width: fit-content;
+
         &:active {
             filter: saturate(1.5);
         }
     }
+
     &__display--icon {
         gap: 0.5rem;
         z-index: 10;
@@ -195,6 +222,7 @@ body {
         right: 0.5rem;
         cursor: pointer;
     }
+
     &__container--icon {
         align-items: center;
         background-color: #e0e0e0;
@@ -207,12 +235,15 @@ body {
         width: 64px;
         padding: 0.2rem;
     }
+
     &__container--icon[data-hover]:hover {
         transform: scale(1.1);
     }
+
     &__icon {
         height: auto;
     }
+
     &__btn {
         z-index: 100;
         background-color: var(--background-primary);
@@ -222,39 +253,47 @@ body {
         padding: 0.8rem;
         width: 100%;
         transition: all 0.5s ease;
+
         &:hover {
             background-color: var(--background-tertiary);
         }
+
         &:active {
             background-color: var(--bug-color);
         }
     }
+
     &__canvas {
         padding: 0.8rem;
         height: 180px;
         width: fit-content;
     }
+
     & h5 {
         color: var(--background-primary);
         font-size: 1.2em;
         font-weight: 700;
         margin: 0;
     }
+
     & h4 {
         font-size: 0.9em;
         font-weight: 700;
         margin: 0;
     }
+
     &__type {
         display: flex;
         gap: 0.5rem;
     }
+
     &__chip {
         border-radius: 0.5rem;
         font-weight: 700;
         padding: 0.5rem 1rem;
     }
 }
+
 @media screen and (max-width: 600px) {
     .section {
         &__block {
@@ -272,14 +311,17 @@ body {
     justify-content: center;
     margin-top: 3rem;
     padding: 2rem;
+
     &__h5 {
         font-size: 1.8rem;
         font-weight: 700;
+
         & a:hover {
             text-decoration: none;
             color: var(--background-tertiary);
         }
     }
+
     &__p {
         font-size: 1.1rem;
         font-weight: 400;

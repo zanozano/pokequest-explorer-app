@@ -1,6 +1,5 @@
-//evolution
+// Evolution
 function getAllEvolutions(evol, selectedPokemon) {
-
 	const evolutions = [];
 
 	function recursiveEvolutions(currentChain) {
@@ -19,7 +18,7 @@ function getAllEvolutions(evol, selectedPokemon) {
 }
 
 
-//render pokemon
+// Render Pokemon
 function getEvolutions(species, selectedPokemon) {
 	fetch(species.url)
 		.then(response => response.json())
@@ -29,23 +28,19 @@ function getEvolutions(species, selectedPokemon) {
 				.then(evol => {
 					getAllEvolutions(evol.chain, selectedPokemon);
 				})
-				.catch(error => {
-					console.error('Error fetching evolution chain data:', error);
-				});
+				.catch(handleError('Error fetching evolution chain data'));
 		})
-		.catch(error => {
-			console.error('Error fetching species data:', error);
-		});
+		.catch(handleError('Error fetching species data'));
 }
 
-//show pokemon
+// Display Evolutions
 function displayEvolutions(evolutions) {
 	const pokeIconContainer = document.getElementById('pokeIcon');
 	let iconsHTML = '';
 
 	function renderNextImage(index) {
 		if (index >= evolutions.length) {
-			return; // Se han renderizado todas las imágenes
+			return;
 		}
 
 		const pokemonName = evolutions[index];
@@ -56,10 +51,10 @@ function displayEvolutions(evolutions) {
 				const pokemonImage = data.sprites.front_default;
 
 				iconsHTML += `
-					<div class="section__container--icon" data-hover="${data.id}">
-						<img class="section__icon" src="${pokemonImage}" alt="${data.name}" onclick="fetchPokemonInfo(${data.id})" />	
-					</div>
-				`;
+          <div class="section__container--icon" data-hover="${data.id}">
+            <img class="section__icon" src="${pokemonImage}" alt="${data.name}" onclick="fetchPokemonInfo(${data.id})" />	
+          </div>
+        `;
 
 				pokeIconContainer.innerHTML = iconsHTML;
 
@@ -67,17 +62,18 @@ function displayEvolutions(evolutions) {
 					renderNextImage(index + 1);
 				}, 100);
 			})
-			.catch(error => {
-				console.error(`Error fetching Pokémon data for ${pokemonName}:`, error);
-			});
+			.catch(handleError(`Error fetching Pokémon data for ${pokemonName}`));
 	}
+
 	renderNextImage(0);
 }
 
+// Submit Pokemon
 function submitPokemon(id) {
-	let form = document.getElementById('form');
-	let input = form.getElementById('#pokemonInput').value(id);
-	form.submit(input);
+	const form = document.getElementById('form');
+	const input = form.querySelector('#pokemonInput');
+	input.value = id;
+	form.submit();
 }
 
 // render main pokemon card

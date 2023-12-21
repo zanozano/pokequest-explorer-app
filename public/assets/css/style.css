@@ -275,6 +275,9 @@ body {
   justify-content: center;
   padding: 1rem;
 }
+.search__h2 {
+  margin: 0;
+}
 
 @media screen and (max-width: 600px) {
   .search {
