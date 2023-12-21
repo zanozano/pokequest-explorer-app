@@ -28,10 +28,11 @@ function getEvolutions(species, selectedPokemon) {
 				.then(evol => {
 					getAllEvolutions(evol.chain, selectedPokemon);
 				})
-				.catch(handleError('Error fetching evolution chain data'));
+				.catch('Error fetching evolution chain data');
 		})
-		.catch(handleError('Error fetching species data'));
+		.catch('Error fetching species data');
 }
+
 
 // Display Evolutions
 function displayEvolutions(evolutions) {
@@ -42,8 +43,10 @@ function displayEvolutions(evolutions) {
 		if (index >= evolutions.length) {
 			return;
 		}
-
+		//spinner
 		const pokemonName = evolutions[index];
+		const spinnerHTML = '<div class="section__container--icon"><div class="spinner-border" role = "status"></div></div>';
+		pokeIconContainer.innerHTML = spinnerHTML;
 
 		fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
 			.then(response => response.json())
@@ -57,12 +60,10 @@ function displayEvolutions(evolutions) {
         `;
 
 				pokeIconContainer.innerHTML = iconsHTML;
+				renderNextImage(index + 1);
 
-				setTimeout(() => {
-					renderNextImage(index + 1);
-				}, 100);
 			})
-			.catch(handleError(`Error fetching Pokémon data for ${pokemonName}`));
+			.catch(`Error fetching Pokémon data for ${pokemonName}`);
 	}
 
 	renderNextImage(0);
@@ -78,6 +79,12 @@ function submitPokemon(id) {
 
 // render main pokemon card
 function fetchPokemonInfo(valueInput) {
+
+	//spinner
+	const spinnerHTML = '<div class="spinner-border" role="status"></div>';
+	const sectionCard = document.querySelector('.section__card');
+	sectionCard.innerHTML = spinnerHTML;
+
 	if (valueInput != '') {
 		$.ajax({
 			url: 'https://pokeapi.co/api/v2/pokemon/' + valueInput,
