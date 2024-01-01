@@ -80,12 +80,11 @@ function submitPokemon(id) {
 // render main pokemon card
 function fetchPokemonInfo(valueInput) {
 
-	//spinner
-	const spinnerHTML = '<div class="spinner-border" role="status"></div>';
-	const sectionCard = document.querySelector('.section__card');
-	sectionCard.innerHTML = spinnerHTML;
-
-	if (valueInput != '') {
+	if (valueInput !== '') {
+		//spinner
+		const spinnerHTML = '<div class="spinner-border" role="status"></div>';
+		const sectionCard = document.querySelector('.section__card');
+		sectionCard.innerHTML = spinnerHTML;
 		$.ajax({
 			url: 'https://pokeapi.co/api/v2/pokemon/' + valueInput,
 			success: function (data) {

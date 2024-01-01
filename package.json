@@ -1,5 +1,5 @@
 {
-  "name": "pokeapi-app",
+  "name": "pokequest-explorer-app",
   "version": "2.0.0",
   "description": "The project uses the API of Pokemon to render img in the app",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zanozano/pokeApi.git"
+    "url": "git+https://github.com/zanozano/pokequest-explorer-app.git"
   },
   "keywords": [
     "pokemon",
@@ -19,9 +19,9 @@
   "author": "Cristobal Manzano",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zanozano/pokeApi/issues"
+    "url": "https://github.com/zanozano/pokequest-explorer-app/issues"
   },
-  "homepage": "https://github.com/zanozano/pokeApi#readme",
+  "homepage": "https://github.com/zanozano/pokequest-explorer-app#readme",
   "dependencies": {
     "node-sass": "^9.0.0",
     "sweetalert2": "^11.7.23"
