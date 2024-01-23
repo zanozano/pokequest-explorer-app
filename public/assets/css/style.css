@@ -188,7 +188,7 @@ body {
   --background-primary: #313131;
   --background-secondary: #fff;
   --background-tertiary: #ee6b2f;
-  --background-quaternary: #4dad5b;
+  --background-quaternary: #227b2f;
   --font-primary: #919191;
   --font-secondary: #fff;
   --normal-color: #a8a77a;
@@ -269,7 +269,7 @@ body {
 }
 .search__container--right {
   align-items: center;
-  background-color: var(--background-quaternary);
+  background-color: #188328;
   border-radius: 0.3rem;
   display: flex;
   justify-content: center;
